@@ -1,7 +1,7 @@
 (function(window, document, undefined) {
 'use strict'
-// var host = 'http://songzhumei.local/topiclip/'
-var host = 'http://120.24.19.157:8090/topiclip/'
+var host = 'http://songzhumei.local/topiclip/'
+// var host = 'http://120.24.19.157:8090/topiclip/'
 var API_root = 'api'
 var API_host = host + API_root
 
@@ -35,7 +35,6 @@ if (pathname.indexOf(Route.contact) != -1) {
 Util.dispatcher(Route.contact, function () {
 Config.currentPage = Route.contact
 Page.contact.init()
-console.log('contact')
 })
 }
 // dispatch
@@ -114,8 +113,10 @@ match && func[1](match)
 */
 Util.form_control = {
 clear: function (_option) {
-for (var i = 0; i < _option.length; i++) {
-$('#' + _option[i].key).val('')
+var length = Util.json.get_length(_option)
+var key_arr = Util.json.key_arr(_option)
+for (var i = 0; i < length; i++) {
+$('#' + key_arr[i]).val('')
 }
 },
 error: function (key, err) {
@@ -202,6 +203,22 @@ end: function () {
 $('.loading-con').addClass('hidden');
 $('.body').removeClass('no-scroll');
 }
+}
+
+/*
+*modal
+*/
+Util.modal = function (id) {
+$(id).modal({
+backdrop: true,
+keyboard: true
+});
+$(window).on('shown.bs.modal', function () {
+$('body').addClass('no-scroll')
+})
+$(window).on('hidden.bs.modal', function () {
+$('body').removeClass('no-scroll');
+})
 }
 
 Util.nav = {
@@ -421,11 +438,9 @@ if (!has_err) {
 Util.loading.begin()
 Api.form.submit(option)
 .done(function (obj) {
-Util.loading.end()
 Util.form_control.clear(option)
-setTimeout(function () {
-alert(Consist.response_msg.success)
-}, 500)
+Util.loading.end()
+Util.modal('#myModal')
 })
 .fail(function (err) {
 Util.loading.end()

@@ -146,6 +146,14 @@ input, textarea {
   color: #fff;
 }
 
+.no-scroll {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
 @media (max-width: 991px) {
   .container {
     width: 100%;
@@ -1209,12 +1217,45 @@ nav .btn-blue {
   width: 50%;
 }
 
-.no-scroll {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
+.form-modal {
+  top: 20%;
+}
+
+.form-modal .modal-content {
+  padding-bottom: 40px;
+}
+
+.form-modal .modal-header {
+  border-bottom: none;
+}
+
+.form-modal .modal-body {
+  text-align: center;
+}
+
+.form-modal .modal-body h3 {
+  color: #333;
+  font-weight: bold;
+}
+
+.form-modal .modal-body p {
+  padding-top: 2em;
+  color: #333;
+}
+
+.form-modal .modal-body footer {
+  padding-top: 2em;
+  text-align: center;
+}
+
+.form-modal .modal-body footer a {
+  font-size: 17px;
+  font-weight: bold;
+  color: #0ab365;
+}
+
+.form-modal .modal-body footer a:hover {
+  text-decoration: underline;
 }
 
 .standard-con {
