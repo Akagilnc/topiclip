@@ -4,11 +4,17 @@ require "SMTP.php";
 require "Exception.php";
 
 //config setting
-$host = 'smtp.sina.com';                  // Specify main and backup SMTP servers
-$username = 'yuantianbingxue@sina.com';   // SMTP username
-$password = 'ytbx2222222';                // SMTP password
-$SMTPSecure = 'tls';                      // Enable TLS encryption, `ssl` also accepted
-$port = 25;                               // TCP port to connect to   gmail is 587
+$host = 'smtp.lolipop.jp';                  // Specify main and backup SMTP servers
+$username = 'oomura@royt.co.jp';            // SMTP username
+$password = '';                             // SMTP password
+$SMTPSecure = 'ssl';                        // Enable TLS encryption, `ssl` also accepted
+$port = 465;                                // TCP port to connect to   gmail is 587
+
+//$host = 'smtp.sina.com';                  // Specify main and backup SMTP servers
+//$username = 'yuantianbingxue@sina.com';   // SMTP username
+//$password = 'ytbx2222222';                // SMTP password
+//$SMTPSecure = 'tls';                      // Enable TLS encryption, `ssl` also accepted
+//$port = 25;                               // TCP port to connect to   gmail is 587
 
 $adminMail = 'yuantianbingxue@sina.com';
 $adminName = 'TOPICLIP';
@@ -33,9 +39,8 @@ $userBody = '
 今しばらくお待ちくださいますようよろしくお願い申し上げます。</p>
 <p>上記下に</p>';
 
-$mail = new PHPMailer\PHPMailer\PHPMailer();               // Passing `true` enables exceptions
-
 //send to admin
+$mail = new PHPMailer\PHPMailer\PHPMailer();               // Passing `true` enables exceptions
 try {
     //Server settings
     $mail->CharSet = "utf-8";
@@ -65,9 +70,8 @@ try {
     echo 'Mailer Error: ' . $mail->ErrorInfo;
 }
 
-$mail = new PHPMailer\PHPMailer\PHPMailer();
-
 //send to user
+$mail = new PHPMailer\PHPMailer\PHPMailer();
 try {
     //Server settings
     $mail->CharSet = "utf-8";

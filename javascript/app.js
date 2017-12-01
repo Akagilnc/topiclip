@@ -1,7 +1,8 @@
 (function(window, document, undefined) {
 'use strict'
-var host = 'http://songzhumei.local/topiclip/'
+// var host = 'http://songzhumei.local/topiclip/'
 // var host = 'http://120.24.19.157:8090/topiclip/'
+var host = 'http://royt-demo.com/topiclip2/'
 var API_root = 'api'
 var API_host = host + API_root
 
@@ -153,8 +154,8 @@ var numberreg = /^\+?[1-9][0-9]*$/
 return (numberreg.exec(number))
 }
 Check.phone = function (phone) {
-var phonereg = /^((\d{3,4}-)?\d{7,8})?(1[3587]\d{9})?$/
-return (phonereg.exec(phone) && phone.length == 11)
+var phonereg = /^[0-9]{2,4}-[0-9]{2,4}-[0-9]{3,4}$/
+return (phonereg.exec(phone))
 }
 //verify of form
 Check.item_verify = function (key, value, callback) {
@@ -169,7 +170,7 @@ return callback(Consist.input_msg.email)
 }
 }
 if (key === 'phone') {
-if (value && ( !Check.number(value) || value.length > 50)) {
+if (value && ( !Check.phone(value) || value.length > 50)) {
 return callback(Consist.input_msg.phone)
 }
 } else if ((key != 'question') && value.length > 100) {
