@@ -34,10 +34,9 @@ $adminBody = '<ul>' .
     . '</ul>';
 $userBody = '
 <p style="padding-bottom: 15px">お問い合わせありがとうございました。</p>
-<p style="padding-bottom: 15px">この度はお問い合わせメールをお送りいただきありがとうございます。<br>
+<p>この度はお問い合わせメールをお送りいただきありがとうございます。<br>
 後ほど、担当者よりご連絡をさせていただきます。<br>
-今しばらくお待ちくださいますようよろしくお願い申し上げます。</p>
-<p>上記下に</p>';
+今しばらくお待ちくださいますようよろしくお願い申し上げます。</p>';
 
 //send to admin
 $mail = new PHPMailer\PHPMailer\PHPMailer();               // Passing `true` enables exceptions
@@ -91,7 +90,7 @@ try {
     //Content
     $mail->isHTML(true);
     $mail->Subject = $userSubject;
-    $mail->Body = $userBody;
+    $mail->Body = $userBody.'<br>'.$adminBody;
     $mail->AltBody = $userSubject;
     $mail->send();
 
