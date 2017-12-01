@@ -66,14 +66,15 @@ try {
 }
 
 $mail = new PHPMailer\PHPMailer\PHPMailer();
+
 //send to user
 try {
     //Server settings
     $mail->CharSet = "utf-8";
-    $mail->SMTPDebug = 2;                                 // Enable verbose debug output
-    $mail->isSMTP();                                      // Set mailer to use SMTP
+    $mail->SMTPDebug = 2;
+    $mail->isSMTP();
     $mail->Host = $host;
-    $mail->SMTPAuth = true;                               // Enable SMTP authentication
+    $mail->SMTPAuth = true;
     $mail->Username = $username;
     $mail->Password = $password;
     $mail->SMTPSecure = $SMTPSecure;
