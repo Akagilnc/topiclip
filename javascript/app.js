@@ -1,8 +1,8 @@
 (function(window, document, undefined) {
 'use strict'
-// var host = 'http://songzhumei.local/topiclip/'
+var host = 'http://songzhumei.local/topiclip/'
 // var host = 'http://120.24.19.157:8090/topiclip/'
-var host = 'http://royt-demo.com/topiclip2/'
+// var host = 'http://royt-demo.com/topiclip2/'
 var API_root = 'api'
 var API_host = host + API_root
 
@@ -155,6 +155,7 @@ return (numberreg.exec(number))
 }
 Check.phone = function (phone) {
 var phonereg = /^[0-9]{2,4}-[0-9]{2,4}-[0-9]{3,4}$/
+// var phonereg = /^((\d{3,4}-)?\d{7,8})?(1[3587]\d{9})?$/  //China phone number
 return (phonereg.exec(phone))
 }
 //verify of form
@@ -206,19 +207,35 @@ $('.body').removeClass('no-scroll');
 }
 }
 
-/*
+/**
 *modal
 */
 Util.modal = function (id) {
+var top = 0
+var no_scroll = function ($body, is_fixed) {
+top = window.scrollY
+if (is_fixed) {
+$body.addClass('no-scroll')
+$body.css('top', -top + 'px')
+} else {
+$body.removeClass('no-scroll')
+$body.css('top', 0)
+}
+}
 $(id).modal({
 backdrop: true,
 keyboard: true
-});
-$(window).on('shown.bs.modal', function () {
-$('body').addClass('no-scroll')
 })
-$(window).on('hidden.bs.modal', function () {
-$('body').removeClass('no-scroll');
+//modal bind did every bind, so need off before.
+$(id).off('shown.bs.modal')
+$(id).off('hide.bs.modal')
+$(id).on('shown.bs.modal', function () {
+var $body = $('body')
+no_scroll($body, true)
+})
+$(id).on('hide.bs.modal', function () {
+var $body = $('body')
+no_scroll($body, false)
 })
 }
 
@@ -318,7 +335,6 @@ var len = string.length
 for (var i = 0; i < len; i++) {
 var c_code = string.charCodeAt(i)
 c_code = (c_code >= 0xFF01 && c_code <= 0xFF5E) ? (c_code - 65248) : c_code
-//空格处理
 c_code = (c_code == 0x03000) ? 0x0020 : c_code
 result += String.fromCharCode(c_code)
 }

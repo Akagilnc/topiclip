@@ -11,8 +11,8 @@ $SMTPSecure = 'ssl';                        // Enable TLS encryption, `ssl` also
 $port = 465;                                // TCP port to connect to   gmail is 587
 
 //$host = 'smtp.sina.com';                  // Specify main and backup SMTP servers
-//$username = 'yuantianbingxue@sina.com';   // SMTP username
-//$password = 'ytbx2222222';                // SMTP password
+//$username = '';   // SMTP username
+//$password = '';                // SMTP password
 //$SMTPSecure = 'tls';                      // Enable TLS encryption, `ssl` also accepted
 //$port = 25;                               // TCP port to connect to   gmail is 587
 
